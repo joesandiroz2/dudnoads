@@ -14,5 +14,8 @@ COPY index.php /var/www/html/index.php
 # Expose port 7860 untuk mengakses Apache
 EXPOSE 7860
 
+# Ubah port Apache untuk mendengarkan
+RUN sed -i 's/Listen 80/Listen 7860/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
+
 # Perintah untuk menjalankan Apache
 CMD ["apache2-foreground"]
