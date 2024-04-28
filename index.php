@@ -131,6 +131,7 @@ if (preg_match("/dood(stream)?\./",$filelink)) {
 </head>
 <body>
 <?php if (!empty($download_link)) : ?>
+  <?php echo $download_link;?>
     <!-- Inisialisasi Fluid Player -->
     <video id="my-video" controls style="width: 100%; height: 100vh;">
         <source src="<?php echo $download_link; ?>" type="video/mp4">
