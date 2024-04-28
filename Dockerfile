@@ -1,17 +1,15 @@
-# Gunakan PHP sebagai dasar
-FROM php:7.4-cli
+# Gunakan PHP dengan Apache sebagai dasar
+FROM php:7.4-apache
 
-# Tambahkan dependensi yang diperlukan
-RUN apt-get update && apt-get install -y \
-    curl \
-    libcurl4-openssl-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Aktifkan modul curl
+RUN a2enmod rewrite
+RUN docker-php-ext-install curl
 
 # Salin skrip PHP ke dalam kontainer
 COPY index.php /var/www/html/index.php
 
-# Port yang perlu dibuka jika Anda ingin mengakses kontainer dari luar
+# Expose port 7860 untuk mengakses Apache
 EXPOSE 7860
 
-# Perintah untuk menjalankan skrip PHP
-CMD ["php", "-S", "0.0.0.0:7860", "-t", "/var/www/html"]
+# Perintah untuk menjalankan Apache
+CMD ["apache2-foreground"]
