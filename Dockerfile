@@ -1,11 +1,17 @@
-# Menggunakan base image PHP dengan Apache
-FROM php:7.4-apache
+# Gunakan PHP sebagai dasar
+FROM php:7.4-cli
 
-# Menyalin wfile index.php ke direktori /var/www/html di dalam container
-COPY index.php /var/www/html/
+# Tambahkan dependensi yang diperlukan
+RUN apt-get update && apt-get install -y \
+    curl \
+    libcurl4-openssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Port yang akan diexpose
-EXPOSE 80
+# Salin skrip PHP ke dalam kontainer
+COPY index.php /var/www/html/index.php
 
-# Command yang akan dijalankan ketika container dijalankan
-CMD ["apache2-foreground"]
+# Port yang perlu dibuka jika Anda ingin mengakses kontainer dari luar
+EXPOSE 7860
+
+# Perintah untuk menjalankan skrip PHP
+CMD ["php", "-S", "0.0.0.0:7860", "-t", "/var/www/html"]
