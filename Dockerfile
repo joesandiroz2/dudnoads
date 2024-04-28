@@ -1,6 +1,9 @@
 # Gunakan PHP dengan Apache sebagai dasar
 FROM php:7.4-apache
 
+# Instal libcurl dan dependensinya
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev
+
 # Aktifkan modul curl
 RUN a2enmod rewrite
 RUN docker-php-ext-install curl
