@@ -5,7 +5,7 @@ FROM php:7.4-apache
 COPY index.php /var/www/html/
 
 # Port yang akan diexpose
-EXPOSE 7860
+EXPOSE 80
 
 # Command yang akan dijalankan ketika container dijalankan
 CMD ["apache2-foreground"]
