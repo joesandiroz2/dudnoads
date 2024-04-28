@@ -142,7 +142,7 @@ if (preg_match("/dood(stream)?\./",$filelink)) {
         // fluidPlayer('my-video');
     </script>
 <?php else : ?>
-    <p>File tidak ditemukan atau terjadi kesalahan.</p>
+    <p>No Result FOUND </p>
     <?php echo $filelink; ?>
 <?php endif; ?>
 </body>
